@@ -1,0 +1,7 @@
+"/Users/ugoraffaele/workspace_titanium/CoTM/build/android/gen/com/ugopiemontese/cotm/ApplicationStylesheet.java"
+"/Users/ugoraffaele/workspace_titanium/CoTM/build/android/gen/com/ugopiemontese/cotm/AssetCryptImpl.java"
+"/Users/ugoraffaele/workspace_titanium/CoTM/build/android/gen/com/ugopiemontese/cotm/CotmActivity.java"
+"/Users/ugoraffaele/workspace_titanium/CoTM/build/android/gen/com/ugopiemontese/cotm/CotmAppInfo.java"
+"/Users/ugoraffaele/workspace_titanium/CoTM/build/android/gen/com/ugopiemontese/cotm/CotmApplication.java"
+"/Users/ugoraffaele/workspace_titanium/CoTM/build/android/gen/com/ugopiemontese/cotm/Manifest.java"
+"/Users/ugoraffaele/workspace_titanium/CoTM/build/android/gen/com/ugopiemontese/cotm/R.java"

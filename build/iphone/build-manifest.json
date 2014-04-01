@@ -1,0 +1,23 @@
+{
+	"target": "simulator",
+	"deployType": "development",
+	"deviceFamily": "iphone",
+	"iosSdkPath": "/Users/ugoraffaele/Library/Application Support/Titanium/mobilesdk/osx/3.2.2.GA/iphone",
+	"tiCoreHash": "77157e1ffaec640cf559356a147b6a4c",
+	"modulesHash": "4e16b93101e69e91e961bb5062a733e4",
+	"modulesNativeHash": "d0ef6b87a34b8194c5dae5bbf4e7f580",
+	"gitHash": "96e9a07",
+	"name": "CoTM",
+	"id": "com.ugopiemontese.cotm",
+	"analytics": true,
+	"publisher": "ugoraffaele",
+	"url": "http://www.ugopiemontese.eu",
+	"version": "1.0",
+	"description": "not specified",
+	"copyright": "2014 by ugoraffaele",
+	"guid": "e7cf3d03-78bc-4565-9e44-fa05ba9a9e65",
+	"skipJSMinification": true,
+	"forceCopy": false,
+	"forceCopyAll": false,
+	"encryptJS": false
+}
