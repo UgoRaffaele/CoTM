@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="welcome">Welcome to %s!</string>
+	<string name="opening">- INAUGURAZIONE -</string>
+	<string name="mappa">MAPPA</string>
+	<string name="mostre">MOSTRE</string>
+	<string name="itinerari">ITINERARI</string>
+	<string name="dormire">DORMIRE</string>
+	<string name="mangiare">MANGIARE</string>
+	<string name="info">INFO</string>
+</resources>
