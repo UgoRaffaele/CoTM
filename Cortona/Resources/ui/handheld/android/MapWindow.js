@@ -5,9 +5,9 @@ function MapWindow() {
 
 	//create component instance
 	var self = Ti.UI.createWindow({
-		title : "Mappa",
+		title : String(L('mappa')),
 		backgroundColor: '#ffffff',
-		navBarHidden: true,
+		navBarHidden: false,
 		exitOnClose: false,
 		orientationModes: [Ti.UI.PORTRAIT]
 	});

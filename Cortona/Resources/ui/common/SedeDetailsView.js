@@ -4,11 +4,12 @@ function SedeDetailsView(id) {
 		
 	var self = Ti.UI.createWindow({
 		backgroundColor:'#ffffff',
-		orientationModes: [Ti.UI.PORTRAIT],
-		statusBarStyle: Titanium.UI.iPhone.StatusBar.OPAQUE_BLACK
+		orientationModes: [Ti.UI.PORTRAIT]
 	});
 	
 	if (Titanium.Platform.name == 'iPhone OS') {
+		
+		self.applyProperties({ statusBarStyle: Titanium.UI.iPhone.StatusBar.OPAQUE_BLACK });
 		
 		var theTop = isiOS7() ? 33 : 0;
 	
@@ -30,7 +31,6 @@ function SedeDetailsView(id) {
 		});
 		
 		navigation.add(backButton);
-		
 		navigation.open();
 		
 	}
@@ -44,25 +44,156 @@ function SedeDetailsView(id) {
 	  var sedeLat = sedeRow.fieldByName('lat');
 	  var sedeLng = sedeRow.fieldByName('lng');
 	  var sedeIndirizzo = sedeRow.fieldByName('indirizzo');
-	  Ti.API.info(sedeId + ' ' + sedeName + ' ' + sedeLat + ' ' + sedeLng + ' ' + sedeIndirizzo); 
+	  var sedeOrari = sedeRow.fieldByName('orari');
+	  var sedeTicket = sedeRow.fieldByName('ticket');
 	}
 	sedeRow.close();
     db.close();
     
-    self.title = '- ' + sedeName.toUpperCase() + ' -';
-    self.titleAttributes = ({ font: { fontSize: 16, fontFamily:'Helvetica Neue' } });
+    if(!Ti.Platform.Android) {
+    	self.title = '- ' + sedeName.toUpperCase() + ' -';
+    } else {
+    	self.title = sedeName.toUpperCase();
+    }
+    self.titleAttributes = ({ font: { fontSize: 16, fontFamily:'Helvetica Neue' } }); 
     
-    var maxWidth = (Ti.Platform.displayCaps.platformWidth);
+    var hor = Ti.UI.createView({
+    	layout: 'horizontal'
+    });
     
-    var headerImage = Ti.UI.createImageView({
-	  image:'/db/photos/' + sedeId + '.jpg',
-	  top: '10dp',
-	  left: '10dp',
-	  right: '10dp',
-      width: Titanium.UI.FILL
+    var textOrari = Ti.UI.createLabel({
+    	text: String(L('orari')),
+		color: '#CC0000',
+		top: '10dp',
+		left: '10dp',
+		right: '10dp',
+		width: Ti.UI.FILL,
+		font: { fontSize: 16, fontFamily:'Helvetica Neue' }
+	});
+	hor.add(textOrari); 
+	
+	var longTextOrari = Ti.UI.createLabel({
+    	text: sedeOrari,
+		color: '#000',
+		top: '10dp',
+		left: '10dp',
+		right: '10dp',
+		width: Ti.UI.FILL,
+		font: { fontSize: 16, fontFamily:'Helvetica Neue' }
+	});
+	hor.add(longTextOrari);    
+	
+	var textIndirizzo = Ti.UI.createLabel({
+    	text: String(L('indirizzo')),
+		color: '#CC0000',
+		top: '10dp',
+		left: '10dp',
+		right: '10dp',
+		width: Ti.UI.FILL,
+		font: { fontSize: 16, fontFamily:'Helvetica Neue' }
+	});
+	hor.add(textIndirizzo);
+	
+	var longTextIndirizzo = Ti.UI.createLabel({
+    	text: sedeIndirizzo,
+		color: '#000',
+		top: '10dp',
+		left: '10dp',
+		right: '10dp',
+		width: Ti.UI.FILL,
+		font: { fontSize: 16, fontFamily:'Helvetica Neue' }
+	});
+	hor.add(longTextIndirizzo);    
+	
+	var textTicket = Ti.UI.createLabel({
+    	text: String(L('ticket')),
+		color: '#CC0000',
+		top: '10dp',
+		left: '10dp',
+		font: { fontSize: 16, fontFamily:'Helvetica Neue' },
+		verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
+	});
+	hor.add(textTicket);  
+	
+	var longTextTicket = Ti.UI.createLabel({
+    	text: sedeTicket,
+		color: '#000',
+		top: '10dp',
+		left: '10dp',
+		right: '10dp',
+		width: Ti.UI.FILL,
+		font: { fontSize: 16, fontFamily:'Helvetica Neue' },
+		verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
+	});
+	hor.add(longTextTicket);    
+    
+    var mostre = Ti.UI.createButton({
+		color: '#FFFFFF',
+		title: '- ' + String(L('vedi_mostre')) + ' -',
+		textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+		font: { fontSize: 16, fontFamily:'Helvetica Neue' },
+		top: '20dp',
+		left: '10dp',
+		right: '10dp',
+		width: Ti.UI.FILL,
+		backgroundColor: '#e10613',
+		borderRadius: 6
 	});
 	
-	self.add(headerImage);
+	hor.add(mostre);
+	
+	mostre.addEventListener('click', function(evt) {
+		var mostreListView = require('/ui/common/MostreListView');
+		new mostreListView(sedeId).open();
+	});
+        
+    var Map = require('ti.map');	
+	
+	var mapView = Map.createView({
+		mapType: Map.NORMAL_TYPE,
+		region: {
+			latitude: sedeLat, longitude: sedeLng,
+            latitudeDelta: 0.003, longitudeDelta: 0.003
+        },
+    	regionFit: true,
+    	userLocation: true,
+    	showsPointsOfInterest: false, //android only
+    	animate: true, 
+    	userLocationButton: false,
+    	enableZoomControls: false
+	});
+	
+	mapView.applyProperties({
+		width: Ti.UI.FILL,
+		height: '150dp',
+		left: '10dp',
+		right: '10dp',
+		bottom: '10dp'
+	});
+	
+	//Ti.API.info(Ti.Platform.displayCaps.platformHeight);
+	
+	if(Ti.Platform.displayCaps.platformHeight >= 568) {
+		mapView.applyProperties({ height: '230dp' });
+	} else if(Ti.Platform.displayCaps.platformHeight >= 800) {
+		mapView.applyProperties({ height: '250dp' });
+	}
+    
+    var sedePOI = Map.createAnnotation({
+		latitude: sedeLat,
+		longitude: sedeLng,
+		pincolor: Map.ANNOTATION_RED,
+		image: '/db/pins/sede.png'
+	});
+	
+	if(Ti.Platform.Android && Ti.Platform.displayCaps.dpi > 160 ) {
+		sedePOI.image = '/db/pins/sede@2x.png';
+	}
+	
+	mapView.addAnnotation(sedePOI);
+	
+	self.add(hor);
+	self.add(mapView);
 		
 	return self;
 }

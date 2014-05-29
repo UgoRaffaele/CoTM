@@ -187,7 +187,7 @@ function FirstView() {
 		
 	}
 	
-	if(deviceWidth <= 480) {
+	/*if(deviceWidth <= 480) {
 		targhetta.setFont({ fontSize: 20 });
 		mapButton.setFont({ fontSize: 14 });
 		mostreButton.setFont({ fontSize: 14 });
@@ -195,6 +195,17 @@ function FirstView() {
 		dormireButton.setFont({ fontSize: 14 });
 		mangiareButton.setFont({ fontSize: 14 });
 		infoButton.setFont({ fontSize: 14 });
+	}*/
+	
+	/*TESTING*/
+	if(deviceWidth <= 720) {
+		targhetta.setFont({ fontSize: '20dp' });
+		mapButton.setFont({ fontSize: '14dp' });
+		mostreButton.setFont({ fontSize: '14dp' });
+		itinerariButton.setFont({ fontSize: '14dp' });
+		dormireButton.setFont({ fontSize: '14dp' });
+		mangiareButton.setFont({ fontSize: '14dp' });
+		infoButton.setFont({ fontSize: '14dp' });
 	}
 	
 	var path = 'ui/handheld/';
@@ -207,6 +218,11 @@ function FirstView() {
 		var Window;
 	    Window = require(path + 'MapWindow');
 	  	new Window().open();
+	});
+	
+	mostreButton.addEventListener('click', function(e) {
+		var mostreListView = require('/ui/common/MostreListView');
+		new mostreListView(null).open();
 	});
 
 	return self;

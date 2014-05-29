@@ -37,15 +37,18 @@ function MapView() {
 			longitude: sedeLng,
 			title: sedeName,
 			subtitle: sedeIndirizzo,
+			pincolor: Map.ANNOTATION_RED,
+			image: '/db/pins/sede.png',
 			sid: sedeId // custom property
 		});
 		
-		if(!Ti.Platform.Android) {
-			sedePOI.applyProperties({ leftButton: '/db/pins/sede_icon.png' });
+		if(!Ti.Platform.Android && isiOS7()) {
+			sedePOI.leftButton = '/db/pins/sede_icon.png';
 		}
-		
-		sedePOI.pincolor = Map.ANNOTATION_RED;
-		sedePOI.image = '/db/pins/sede.png';
+				
+		if(Ti.Platform.Android && Ti.Platform.displayCaps.dpi > 160 ) {
+			sedePOI.image = '/db/pins/sede@2x.png';
+		}
 		
 		mapView.addAnnotation(sedePOI);
 		sediRow.next();
@@ -61,7 +64,7 @@ function MapView() {
 		
 		var evento = (evt.clicksource == 'title') || (evt.clicksource == 'subtitle');
 		
-		if(!Ti.Platform.Android) {
+		if(!Ti.Platform.Android && isiOS7()) {
 			evento = (evt.clicksource == 'leftButton') || (evt.clicksource == 'leftPane'); //fix iOS 7 bug
 		}
 		
@@ -77,6 +80,19 @@ function MapView() {
 	});
 
 	return self;
+}
+
+// Function to test if device is iOS 7 (or later)
+function isiOS7() {
+	// iOS-specific test
+	if (Titanium.Platform.name == 'iPhone OS')
+	{
+		var version = Titanium.Platform.version.split(".");
+		var major = parseInt(version[0],10);
+		if (major >= 7)
+			return true;
+	}
+	return false;
 }
 
 module.exports = MapView;
