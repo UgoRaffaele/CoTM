@@ -42,14 +42,14 @@ function MostreListView(idSede) {
 		navigation.open();
 		
 	}
-		
+			
 	var db = Ti.Database.open('CoTM');
 	
 	var query = 'SELECT mid, titolo, autore, thumb FROM mostre';
 	if(idSede != null) {
 		query = query + ' WHERE sede=' + idSede;
 	}
-	query = query + ' ORDER BY titolo';
+	query = query + ' GROUP BY thumb ORDER BY titolo';
 	
 	var mostreRow = db.execute(query);
 	while (mostreRow.isValidRow()) {
@@ -60,20 +60,31 @@ function MostreListView(idSede) {
 	  
 	  var mostra = Ti.UI.createView({
 	  	width: Ti.UI.Fill,
-	  	height: '80dp'
+	  	height: Ti.UI.SIZE,
+	  	layout: 'vertical',
+	  	top: '10dp',
+	  	bottom: '10dp',
+	  	left: '10dp',
+	  	right: '10dp',
+	  	borderColor: '#CCC',
+	  	borderWidth: '1dp',
+	  	mid: mostraId
 	  });
 	  	  
 	  var thumb = Ti.UI.createImageView({
+	  	top: '0dp',
 	  	left: '0dp',
-	  	width: '80dp',
-	  	height: '80dp',
-	  	image: '/db/photos/' + mostraId + '.jpg'
+	  	right: '0dp',
+	  	image: '/db/mostre/' + mostraThumb,
+	  	width: Ti.UI.FILL,
+	  	height: '180dp' /*fix android fill width bug*/
 	  });
 	  
 	  var titolo = Ti.UI.createLabel({
 	  	text: mostraName.toUpperCase() ,
-	  	left: '90dp',
 	  	top: '10dp',
+	  	left: '10dp',
+	  	right: '10dp',
 	  	width: Ti.UI.FILL,
 	  	font: { fontSize: '16dp', fontFamily:'Helvetica Neue', fontWeight: 'bold' },
 	  	color: '#000'
@@ -81,34 +92,30 @@ function MostreListView(idSede) {
 	  
 	  var autore = Ti.UI.createLabel({
 	  	text: mostraAutore,
-	  	left: '90dp',
-	  	bottom: '10dp',
+	  	top: '0dp',
+	  	left: '10dp',
+	  	right: '10dp',
 	  	width: Ti.UI.FILL,
 	  	font: { fontSize: '16dp', fontFamily:'Helvetica Neue' },
-	  	color: '#000'
+	  	color: '#CC0000'
 	  });
 	  
-	 var freccia = Titanium.UI.createButton({
-		title: '',
-	    width: '12dp',
-   		height: '22dp',
-		right: '10dp',
-		backgroundImage: '/images/freccia.png'
-	  });
-	  
-	  var borderBottom = Ti.UI.createView({
-	    backgroundColor: '#cc0000',
-	    width: Ti.UI.Fill,
-	    height: '1dp',
-	    top: 0
+	  var paddingView = Titanium.UI.createView({
+	  	width: Ti.UI.Fill,
+	  	height: '10dp'
 	  });
 	  
 	  mostra.add(thumb);
 	  mostra.add(titolo);
 	  mostra.add(autore);
-	  mostra.add(freccia);
+	  mostra.add(paddingView);
 	  scrollView.add(mostra);
-	  scrollView.add(borderBottom);
+	  
+	  // Handle click events on any annotations on this map.
+	  mostra.addEventListener('click', function(e) {
+	  	var mostraDetails = require('/ui/common/MostreDetailsView');
+		new mostraDetails(this.mid).open();
+	  });
 	  	  
 	  mostreRow.next();
 	}

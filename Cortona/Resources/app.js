@@ -37,7 +37,10 @@ if (Ti.version < 1.8) {
   }
 
   var isTablet = checkTablet();
-  console.log(isTablet);
+  
+  var db = Ti.Database.install('/db/CoTM.sqlite', 'CoTM');
+  if(Ti.Platform.osname != 'android')
+	db.file.setRemoteBackup(false);	
 
   var Window;
   if (isTablet) {

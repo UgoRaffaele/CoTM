@@ -1,11 +1,15 @@
 //FirstView Component Constructor
 function MapView() {
 	//create object instance, a parasitic subclass of Observable
-	var self = Ti.UI.createView();
+	var self = Ti.UI.createView({
+		orientationModes: [Ti.UI.PORTRAIT]
+	});
 			
-	var db = Ti.Database.install('/db/CoTM.sqlite', 'CoTM');
-	if(Ti.Platform.osname != 'android')
-		db.file.setRemoteBackup(false);	
+	//var db = Ti.Database.install('/db/CoTM.sqlite', 'CoTM');
+	//if(Ti.Platform.osname != 'android')
+	//	db.file.setRemoteBackup(false);	
+	
+	var db = Ti.Database.open('CoTM');
 	
 	var Map = require('ti.map');	
 	

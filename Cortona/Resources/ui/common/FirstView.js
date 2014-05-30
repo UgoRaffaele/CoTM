@@ -9,6 +9,7 @@ function FirstView() {
 		width: '100%',
 		height: '100%',
 		/*layout: 'vertical'*/
+		orientationModes: [Ti.UI.PORTRAIT]
 	});
 	
 	var logo = Ti.UI.createImageView({
@@ -199,13 +200,13 @@ function FirstView() {
 	
 	/*TESTING*/
 	if(deviceWidth <= 720) {
-		targhetta.setFont({ fontSize: '20dp' });
-		mapButton.setFont({ fontSize: '14dp' });
-		mostreButton.setFont({ fontSize: '14dp' });
-		itinerariButton.setFont({ fontSize: '14dp' });
-		dormireButton.setFont({ fontSize: '14dp' });
-		mangiareButton.setFont({ fontSize: '14dp' });
-		infoButton.setFont({ fontSize: '14dp' });
+		targhetta.setFont({ fontSize: '18dp' });
+		mapButton.setFont({ fontSize: '13dp' });
+		mostreButton.setFont({ fontSize: '13dp' });
+		itinerariButton.setFont({ fontSize: '13dp' });
+		dormireButton.setFont({ fontSize: '13dp' });
+		mangiareButton.setFont({ fontSize: '13dp' });
+		infoButton.setFont({ fontSize: '13dp' });
 	}
 	
 	var path = 'ui/handheld/';
