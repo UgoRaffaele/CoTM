@@ -4,7 +4,8 @@ function MostraDetailsView(id) {
 		
 	var self = Ti.UI.createWindow({
 		backgroundColor:'#ffffff',
-		orientationModes: [Ti.UI.PORTRAIT]
+		orientationModes: [Ti.UI.PORTRAIT],
+		height: Ti.UI.FILL
 	});
 	
 	if (Titanium.Platform.name == 'iPhone OS') {
@@ -58,49 +59,65 @@ function MostraDetailsView(id) {
     }
     self.titleAttributes = ({ font: { fontSize: 16, fontFamily:'Helvetica Neue' } }); 
     
-    var ver = Ti.UI.createView({
-    	layout: 'vertical'
+    var topLayout = Ti.UI.createView({
+    	width: Ti.UI.FILL,
+    	height: Ti.UI.SIZE,
+    	layout: 'vertical',
+    	top: '10dp',
+	  	left: '10dp',
+	  	right: '10dp'
+    });
+    
+    var scrollView = Ti.UI.createScrollView({
+	  contentWidth: Ti.UI.FILL,
+	  showVerticalScrollIndicator: true,
+	  width: Ti.UI.FILL,
+	  top: '10dp',
+	});
+    
+    var botLayout = Ti.UI.createView({
+    	width: Ti.UI.FILL,
+    	height: Ti.UI.SIZE,
+    	layout: 'vertical',
+    	bottom: '10dp',
+	  	left: '10dp',
+	  	right: '10dp'
     });
     
     var thumb = Ti.UI.createImageView({
-	  	top: '10dp',
-	  	left: '10dp',
-	  	right: '10dp',
+	  	top: '0dp',
 	  	image: '/db/mostre/' + mostraThumb,
 	  	width: Ti.UI.FILL,
 	  	height: '180dp' /*fix android fill width bug*/
 	});
-	ver.add(thumb);
+	topLayout.add(thumb);
 	
 	var titolo = Ti.UI.createLabel({
-	  	text: mostraName.toUpperCase() ,
+	  	text: mostraName.toUpperCase(),
 	  	top: '10dp',
-	  	left: '10dp',
-	  	right: '10dp',
 	  	width: Ti.UI.FILL,
 	  	font: { fontSize: '16dp', fontFamily:'Helvetica Neue', fontWeight: 'bold' },
 	  	color: '#CC0000'
 	});
-	ver.add(titolo); 
-	
-	var scrollView = Ti.UI.createScrollView({
-	  contentWidth: Ti.UI.FILL,
-	  showVerticalScrollIndicator: true,
-	  width: Ti.UI.FILL,
-	  layout: 'vertical',
-	  top: '10dp',
-	  left: '10dp',
-	  right: '10dp',
-	  bottom: '10dp'
-	});
+	topLayout.add(titolo); 
 	
 	var longTextDescrizione = Ti.UI.createLabel({
     	text: mostraDescrizione,
 		color: '#000',
 		width: Ti.UI.FILL,
-		font: { fontSize: 16, fontFamily:'Helvetica Neue' }
+		font: { fontSize: 16, fontFamily:'Helvetica Neue' },
+		top: '0dp'
 	});
 	scrollView.add(longTextDescrizione);
+	
+	topLayout.add(scrollView);
+	
+	var paddingView = Ti.UI.createView({
+	  width: Ti.UI.FILL,
+	  height: '20dp',
+	  top: '0dp'
+	});
+	botLayout.add(paddingView);
 	
 	var dividerView = Ti.UI.createView({
 	  width: Ti.UI.FILL,
@@ -108,7 +125,7 @@ function MostraDetailsView(id) {
 	  top: '10dp',
 	  backgroundColor: '#CC0000'
 	});
-	scrollView.add(dividerView);
+	botLayout.add(dividerView);
 	
 	var orari = Ti.UI.createLabel({
     	text: mostraOrari,
@@ -117,7 +134,7 @@ function MostraDetailsView(id) {
 		width: Ti.UI.FILL,
 		font: { fontSize: 16, fontFamily:'Helvetica Neue' }
 	});
-	scrollView.add(orari);    
+	botLayout.add(orari);    
 
 	var sede = Ti.UI.createButton({
 		color: '#FFFFFF',
@@ -129,15 +146,24 @@ function MostraDetailsView(id) {
 		backgroundColor: '#e10613',
 		borderRadius: 6
 	});
-	scrollView.add(sede); 
+	botLayout.add(sede); 
 		
 	sede.addEventListener('click', function(evt) {
 		var sedeDetailsView = require('/ui/common/SedeDetailsView');
 		new sedeDetailsView(sedeId).open();
 	});
 	
-	ver.add(scrollView);
-	self.add(ver);
+	self.add(topLayout);
+	self.add(botLayout);
+	
+	if(Ti.Platform.Android) {
+		self.addEventListener("postlayout", function(e) {
+			topLayout.applyProperties({ height: (self.getRect().height - botLayout.getRect().height) });
+		});
+	} else {
+		topLayout.applyProperties({ height: (self.getRect().height - botLayout.getRect().height) });
+	}
+	scrollView.applyProperties({ height: Ti.UI.FILL });
 
 	return self;
 }

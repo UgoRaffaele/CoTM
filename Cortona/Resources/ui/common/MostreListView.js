@@ -113,7 +113,7 @@ function MostreListView(idSede) {
 	  
 	  // Handle click events on any annotations on this map.
 	  mostra.addEventListener('click', function(e) {
-	  	var mostraDetails = require('/ui/common/MostreDetailsView');
+	  	var mostraDetails = require('/ui/common/MostraDetailsView');
 		new mostraDetails(this.mid).open();
 	  });
 	  	  
