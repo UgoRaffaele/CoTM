@@ -59,6 +59,52 @@ function MapView() {
 	}
 	
 	sediRow.close();
+    
+    var sponsorRow = db.execute('SELECT pid, cid, name, lat, lng, description FROM sponsor');
+	
+	while (sponsorRow.isValidRow()) {
+		var sponsorId = sponsorRow.fieldByName('pid');
+		var categoriaId = sponsorRow.fieldByName('cid');
+		var sponsorName = sponsorRow.fieldByName('name');
+		var sponsorLat = sponsorRow.fieldByName('lat');
+		var sponsorLng = sponsorRow.fieldByName('lng');
+		var sponsorIndirizzo = sponsorRow.fieldByName('description');
+		
+		var sponsorPOI = Map.createAnnotation({
+			latitude: sponsorLat,
+			longitude: sponsorLng,
+			title: sponsorName,
+			subtitle: sponsorIndirizzo,
+			pincolor: Map.ANNOTATION_GREEN,
+			pid: sponsorId // custom property
+		});
+		
+		switch(categoriaId) {
+			case 1:
+				sponsorPOI.image = '/db/pins/mangiare.png';
+				if(!Ti.Platform.Android && isiOS7()) {
+					sponsorPOI.leftButton = '/db/pins/mangiare_icon.png';
+				}
+				if(Ti.Platform.Android && Ti.Platform.displayCaps.dpi > 160 ) {
+					sponsorPOI.image = '/db/pins/mangiare@2x.png';
+				}
+				break;
+			case 2:
+				sponsorPOI.image = '/db/pins/dormire.png';
+				if(!Ti.Platform.Android && isiOS7()) {
+					sponsorPOI.leftButton = '/db/pins/dormire_icon.png';
+				}
+				if(Ti.Platform.Android && Ti.Platform.displayCaps.dpi > 160 ) {
+					sponsorPOI.image = '/db/pins/dormire@2x.png';
+				}
+				break;
+		}
+		
+		mapView.addAnnotation(sponsorPOI);
+		sponsorRow.next();
+	}
+	
+	sponsorRow.close();
     db.close();
 	
 	self.add(mapView);	

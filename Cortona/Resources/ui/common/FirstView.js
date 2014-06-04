@@ -225,6 +225,16 @@ function FirstView() {
 		var mostreListView = require('/ui/common/MostreListView');
 		new mostreListView(null).open();
 	});
+	
+	dormireButton.addEventListener('click', function(e) {
+		var sponsorListView = require('/ui/common/SponsorListView');
+		new sponsorListView(2).open();
+	});
+	
+	mangiareButton.addEventListener('click', function(e) {
+		var sponsorListView = require('/ui/common/SponsorListView');
+		new sponsorListView(1).open();
+	});
 
 	return self;
 }

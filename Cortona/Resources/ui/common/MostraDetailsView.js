@@ -159,11 +159,12 @@ function MostraDetailsView(id) {
 	if(Ti.Platform.Android) {
 		self.addEventListener("postlayout", function(e) {
 			topLayout.applyProperties({ height: (self.getRect().height - botLayout.getRect().height) });
+			scrollView.applyProperties({ height: Ti.UI.FILL });
 		});
 	} else {
 		topLayout.applyProperties({ height: (self.getRect().height - botLayout.getRect().height) });
+		scrollView.applyProperties({ height: Ti.UI.FILL });
 	}
-	scrollView.applyProperties({ height: Ti.UI.FILL });
 
 	return self;
 }

@@ -1,23 +1,30 @@
-//SponsorDetailsView Component Constructor
+//SponsorsDetailsView Component Constructor
 function SponsorDetailsView(id) {
 	//create object instance, a parasitic subclass of Observable
 		
 	var self = Ti.UI.createWindow({
-		backgroundColor:'#ffffff'
+		backgroundColor:'#ffffff',
+		orientationModes: [Ti.UI.PORTRAIT],
+		height: Ti.UI.FILL
 	});
 	
 	if (Titanium.Platform.name == 'iPhone OS') {
 		
-		var theTop = isiOS7() ? 28 : 0;
+		self.applyProperties({ statusBarStyle: Titanium.UI.iPhone.StatusBar.OPAQUE_BLACK });
+		
+		var theTop = isiOS7() ? 33 : 0;
 	
 		var navigation = Titanium.UI.iOS.createNavigationWindow({
 		   window: self
 		});
 		
 		var backButton = Titanium.UI.createButton({
-		    title: 'Indietro',
-		    top:theTop,
-		    left:10
+			title: '',
+		    width: '12dp',
+	   		height: '21dp',
+			left: '8dp',
+			top: theTop,
+			backgroundImage: 'back-arrow.png'
 		});
 		
 		backButton.addEventListener('click', function(){
@@ -25,41 +32,204 @@ function SponsorDetailsView(id) {
 		});
 		
 		navigation.add(backButton);
-		
 		navigation.open();
 		
 	}
-	
-	self.orientationModes = [Titanium.UI.PORTRAIT];
-	
+		
 	var db = Ti.Database.open('CoTM');
 	
-	var sponsorRow = db.execute('SELECT *, sponsor_cat.cname FROM sponsor JOIN sponsor_cat ON sponsor_cat.cid = sponsor.cid WHERE sid=' + id + ' LIMIT 0,1');
-	if (sponsorRow.isValidRow())
-	{
-	  var sponsorId = sponsorRow.fieldByName('sid');
-	  var sponsorName = sponsorRow.fieldByName('sname');
-	  var sponsorCatName = sponsorRow.fieldByName('cname');
-	  var sponsorDescIt = sponsorRow.fieldByName('desc_it');
-	  Ti.API.info(sponsorId + ' ' + sponsorName + ' ' + sponsorCatName + ' ' + sponsorDescIt); 
+	var sponsorRow = db.execute('SELECT * FROM sponsor WHERE pid=' + id + ' LIMIT 0,1');
+	if (sponsorRow.isValidRow()) {
+	  var sponsorId = sponsorRow.fieldByName('pid');
+	  var categoriaId = sponsorRow.fieldByName('cid');
+	  var sponsorName = sponsorRow.fieldByName('name');
+	  var sponsorLat = sponsorRow.fieldByName('lat');
+	  var sponsorLng = sponsorRow.fieldByName('lng');
+	  var sponsorIndirizzo = sponsorRow.fieldByName('description');
+	  var sponsorTel = sponsorRow.fieldByName('tel');
+	  var sponsorUrl = sponsorRow.fieldByName('web');
+	  var sponsorEmail = sponsorRow.fieldByName('email');
 	}
 	sponsorRow.close();
     db.close();
     
-    self.title = sponsorName;
+    if(!Ti.Platform.Android) {
+    	self.title = '- ' + sponsorName.toUpperCase() + ' -';
+    } else {
+    	self.title = sponsorName.toUpperCase();
+    }
+    self.titleAttributes = ({ font: { fontSize: 16, fontFamily:'Helvetica Neue' } }); 
     
-    var maxWidth = (Ti.Platform.displayCaps.platformWidth);
+    var topLayout = Ti.UI.createView({
+    	width: Ti.UI.FILL,
+    	height: Ti.UI.SIZE,
+    	layout: 'vertical',
+    	top: '10dp',
+	  	left: '10dp',
+	  	right: '10dp'
+    });
     
-    var headerImage = Ti.UI.createImageView({
-	  image:'/db/photos/' + sponsorId + '.jpg',
-	  top: 10,
-	  left: 10,
-	  right: 10,
-      width: Titanium.UI.FILL
+    var scrollView = Ti.UI.createScrollView({
+	  contentWidth: Ti.UI.FILL,
+	  showVerticalScrollIndicator: true,
+	  width: Ti.UI.FILL,
+	  top: '10dp',
+	  layout: 'horizontal'
+	});
+    
+    var botLayout = Ti.UI.createView({
+    	width: Ti.UI.FILL,
+    	height: Ti.UI.SIZE,
+    	layout: 'vertical',
+    	bottom: '10dp',
+	  	left: '10dp',
+	  	right: '10dp'
+    });
+    
+    var thumb = Ti.UI.createImageView({
+	  	top: '0dp',
+	  	image: '/db/photos/' + sponsorId + '.jpg',
+	  	width: Ti.UI.FILL,
+	  	height: '180dp' /*fix android fill width bug*/
+	});
+	topLayout.add(thumb);
+	
+	var indirizzo = Ti.UI.createLabel({
+	  	text: sponsorIndirizzo.toUpperCase(),
+	  	top: '0dp',
+	  	width: Ti.UI.FILL,
+	  	font: { fontSize: '16dp', fontFamily:'Helvetica Neue' },
+	  	color: '#000000'
+	});
+	scrollView.add(indirizzo); 
+	
+	var targhetta_tel = Ti.UI.createLabel({
+	  	text: String(L('tel')) + ' ',
+	  	top: '10dp',
+	  	width: Ti.UI.SIZE,
+	  	font: { fontSize: '16dp', fontFamily:'Helvetica Neue' },
+	  	color: '#CC0000'
+	});
+	scrollView.add(targhetta_tel);
+	
+	var tel = Ti.UI.createLabel({
+	  	text: sponsorTel,
+	  	top: '10dp',
+	  	width: Ti.UI.FILL,
+	  	font: { fontSize: '16dp', fontFamily:'Helvetica Neue' },
+	  	color: '#000000'
+	});
+	scrollView.add(tel);
+	
+	var targhetta_web = Ti.UI.createLabel({
+	  	text: String(L('web')) + ' ',
+	  	top: '10dp',
+	  	width: Ti.UI.SIZE,
+	  	font: { fontSize: '16dp', fontFamily:'Helvetica Neue' },
+	  	color: '#CC0000'
+	});
+	scrollView.add(targhetta_web);
+	
+	var web = Ti.UI.createLabel({
+	  	text: sponsorUrl,
+	  	top: '10dp',
+	  	width: Ti.UI.FILL,
+	  	font: { fontSize: '16dp', fontFamily:'Helvetica Neue' },
+	  	color: '#000000'
+	});
+	scrollView.add(web);
+	
+	var targhetta_email = Ti.UI.createLabel({
+	  	text: String(L('email')) + ' ',
+	  	top: '10dp',
+	  	width: Ti.UI.SIZE,
+	  	font: { fontSize: '16dp', fontFamily:'Helvetica Neue' },
+	  	color: '#CC0000'
+	});
+	scrollView.add(targhetta_email);
+	
+	var email = Ti.UI.createLabel({
+	  	text: sponsorEmail,
+	  	top: '10dp',
+	  	width: Ti.UI.FILL,
+	  	font: { fontSize: '16dp', fontFamily:'Helvetica Neue' },
+	  	color: '#000000'
+	});
+	scrollView.add(email); 
+	
+	topLayout.add(scrollView);
+	
+	var Map = require('ti.map');	
+	
+	var mapView = Map.createView({
+		mapType: Map.NORMAL_TYPE,
+		region: {
+			latitude: sponsorLat, longitude: sponsorLng,
+            latitudeDelta: 0.003, longitudeDelta: 0.003
+        },
+    	regionFit: true,
+    	userLocation: true,
+    	showsPointsOfInterest: false, //android only
+    	animate: true, 
+    	userLocationButton: false,
+    	enableZoomControls: false
 	});
 	
-	self.add(headerImage);
-		
+	mapView.applyProperties({
+		width: Ti.UI.FILL,
+		height: '85dp',
+		bottom: '0dp'
+	});
+	
+	if (Ti.Platform.displayCaps.platformHeight >= 568) {
+		mapView.applyProperties({ height: '175dp' });
+	} else if (Ti.Platform.displayCaps.platformHeight >= 800) {
+		mapView.applyProperties({ height: '180dp' });
+	}
+	
+	var sponsorPOI = Map.createAnnotation({
+		latitude: sponsorLat,
+		longitude: sponsorLng,
+		pincolor: Map.ANNOTATION_GREEN
+	});
+	
+	switch(categoriaId) {
+		case 1:
+			sponsorPOI.image = '/db/pins/mangiare.png';
+			if(!Ti.Platform.Android && isiOS7()) {
+				sponsorPOI.leftButton = '/db/pins/mangiare_icon.png';
+			}
+			if(Ti.Platform.Android && Ti.Platform.displayCaps.dpi > 160 ) {
+				sponsorPOI.image = '/db/pins/mangiare@2x.png';
+			}
+			break;
+		case 2:
+			sponsorPOI.image = '/db/pins/dormire.png';
+			if(!Ti.Platform.Android && isiOS7()) {
+				sponsorPOI.leftButton = '/db/pins/dormire_icon.png';
+			}
+			if(Ti.Platform.Android && Ti.Platform.displayCaps.dpi > 160 ) {
+				sponsorPOI.image = '/db/pins/dormire@2x.png';
+			}
+			break;
+	}
+	
+	mapView.addAnnotation(sponsorPOI);
+	botLayout.add(mapView);
+	
+	self.add(topLayout);
+	self.add(botLayout);
+	
+	if(Ti.Platform.Android) {
+		self.addEventListener("postlayout", function(e) {
+			//topLayout.applyProperties({ height: (self.getRect().height - botLayout.getRect().height) });
+			scrollView.applyProperties({ height: Ti.UI.FILL });
+		});
+	} else {
+		//topLayout.applyProperties({ height: (self.getRect().height - botLayout.getRect().height) });
+		scrollView.applyProperties({ height: Ti.UI.FILL });
+	}
+
 	return self;
 }
 

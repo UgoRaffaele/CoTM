@@ -11,7 +11,10 @@
 	
 	<string name="orari">ORARI</string>
 	<string name="indirizzo">INDIRIZZO</string>
+	<string name="tel">TEL.</string>
+	<string name="email">EMAIL</string>
+	<string name="web">WEB</string>
 	<string name="ticket">TICKET</string>
 	<string name="vedi_mostre">VEDI MOSTRE</string>
-	
+		
 </resources>
