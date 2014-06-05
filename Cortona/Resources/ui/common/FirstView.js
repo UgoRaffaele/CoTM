@@ -235,6 +235,11 @@ function FirstView() {
 		var sponsorListView = require('/ui/common/SponsorListView');
 		new sponsorListView(1).open();
 	});
+	
+	infoButton.addEventListener('click', function(e) {
+		var infoView = require('/ui/common/InfoView');
+		new infoView().open();
+	});
 
 	return self;
 }

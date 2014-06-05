@@ -16,5 +16,10 @@
 	<string name="web">WEB</string>
 	<string name="ticket">TICKET</string>
 	<string name="vedi_mostre">VEDI MOSTRE</string>
+	
+	<string name="cotm_2014">COTM 2014</string>
+	<string name="sedi">SEDI E ORARI</string>
+	<string name="biglietti">BIGLIETTI</string>
+	<string name="contatti">CONTATTI</string>
 		
 </resources>
