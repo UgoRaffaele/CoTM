@@ -212,6 +212,15 @@ function SponsorDetailsView(id) {
 				sponsorPOI.image = '/db/pins/dormire@2x.png';
 			}
 			break;
+		case 3:
+			sponsorPOI.image = '/db/pins/servizi.png';
+			if(!Ti.Platform.Android && isiOS7()) {
+				sponsorPOI.leftButton = '/db/pins/servizi_icon.png';
+			}
+			if(Ti.Platform.Android && Ti.Platform.displayCaps.dpi > 160 ) {
+				sponsorPOI.image = '/db/pins/servizi@2x.png';
+			}
+			break;
 	}
 	
 	mapView.addAnnotation(sponsorPOI);

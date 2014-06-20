@@ -157,11 +157,11 @@ function InfoView() {
 	scrollView.add(biglietti);
 	scrollView.add(contatti);
 	
-	//var infoDetailsView = require('/ui/common/InfoDetailsView');
+	var infoDetailsView = require('/ui/common/InfoDetailsView');
 	
 	// Handle click events on any annotations on this map.
 	cotm.addEventListener('click', function(e) {
- 		new infoDetailsView(1).open();
+ 		new infoDetailsView(0).open();
  	});
  	
  	sedi.addEventListener('click', function(e) {
@@ -170,11 +170,11 @@ function InfoView() {
  	});
  	
  	biglietti.addEventListener('click', function(e) {
- 		new infoDetailsView(2).open();
+ 		new infoDetailsView(1).open();
  	});
  	
  	contatti.addEventListener('click', function(e) {
- 		new infoDetailsView(3).open();
+ 		new infoDetailsView(2).open();
  	});
  	
     

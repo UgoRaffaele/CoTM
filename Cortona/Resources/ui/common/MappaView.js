@@ -1,13 +1,40 @@
-//MapView Component Constructor
-function MapView() {
+//MappaView Component Constructor
+function MappaView() {
 	//create object instance, a parasitic subclass of Observable
-	var self = Ti.UI.createView({
+	
+	var self = Ti.UI.createWindow({
+		backgroundColor:'#ffffff',
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
-			
-	//var db = Ti.Database.install('/db/CoTM.sqlite', 'CoTM');
-	//if(Ti.Platform.osname != 'android')
-	//	db.file.setRemoteBackup(false);	
+	
+	if (Titanium.Platform.name == 'iPhone OS') {
+		
+		self.applyProperties({ statusBarStyle: Titanium.UI.iPhone.StatusBar.OPAQUE_BLACK });
+		
+		var theTop = isiOS7() ? 33 : 0;
+	
+		var navigation = Titanium.UI.iOS.createNavigationWindow({
+		   window: self,
+		   backgroundColor: '#000000'
+		});
+		
+		var backButton = Titanium.UI.createButton({
+			title: '',
+		    width: '12dp',
+	   		height: '21dp',
+			left: '8dp',
+			top: theTop,
+			backgroundImage: 'back-arrow.png'
+		});
+		
+		backButton.addEventListener('click', function(){
+		    navigation.close({animated:true});
+		});
+		
+		navigation.add(backButton);
+		navigation.open();
+		
+	} 
 	
 	var db = Ti.Database.open('CoTM');
 	
@@ -115,6 +142,13 @@ function MapView() {
 	
 	sponsorRow.close();
     db.close();
+    
+    if(!Ti.Platform.Android) {
+    	self.title = '- ' + String(L('mappa')).toUpperCase() + ' -';
+    } else {
+    	self.title = String(L('mappa')).toUpperCase();
+    }
+    self.titleAttributes = ({ font: { fontSize: 16, fontFamily:'Helvetica Neue' } });
 	
 	self.add(mapView);	
 	
@@ -154,4 +188,4 @@ function isiOS7() {
 	return false;
 }
 
-module.exports = MapView;
+module.exports = MappaView;

@@ -216,9 +216,11 @@ function FirstView() {
 	
 	//Add behaviors for UI
 	mapButton.addEventListener('click', function(e) {
-		var Window;
+		/*var Window;
 	    Window = require(path + 'MapWindow');
-	  	new Window().open();
+	  	new Window().open();*/
+	  	var mappaView = require('/ui/common/MappaView');
+		new mappaView().open();
 	});
 	
 	mostreButton.addEventListener('click', function(e) {
