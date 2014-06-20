@@ -214,11 +214,7 @@ function FirstView() {
 		path = path + 'android/';
 	}
 	
-	//Add behaviors for UI
 	mapButton.addEventListener('click', function(e) {
-		/*var Window;
-	    Window = require(path + 'MapWindow');
-	  	new Window().open();*/
 	  	var mappaView = require('/ui/common/MappaView');
 		new mappaView().open();
 	});
