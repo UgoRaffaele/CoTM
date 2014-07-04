@@ -224,6 +224,11 @@ function FirstView() {
 		new mostreListView(null).open();
 	});
 	
+	itinerariButton.addEventListener('click', function(e) {
+		var itinerariListView = require('/ui/common/ItinerariListView');
+		new itinerariListView().open();
+	});
+	
 	dormireButton.addEventListener('click', function(e) {
 		var sponsorListView = require('/ui/common/SponsorListView');
 		new sponsorListView(2).open();
