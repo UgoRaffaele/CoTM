@@ -21,7 +21,7 @@ function FirstView() {
 	
 	var targhetta = Ti.UI.createButton({
 		color: '#FFFFFF',
-		title: String(L('opening')),
+		title: '- ' + String(L('opening')) + ' -',
 		textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 		font: { fontSize:20, fontFamily:'Helvetica Neue' },
 		height: '7%',
@@ -199,20 +199,18 @@ function FirstView() {
 	}*/
 	
 	/*TESTING*/
-	if(deviceWidth <= 720) {
-		targhetta.setFont({ fontSize: '18dp' });
-		mapButton.setFont({ fontSize: '13dp' });
-		mostreButton.setFont({ fontSize: '13dp' });
-		itinerariButton.setFont({ fontSize: '13dp' });
-		dormireButton.setFont({ fontSize: '13dp' });
-		mangiareButton.setFont({ fontSize: '13dp' });
-		infoButton.setFont({ fontSize: '13dp' });
-	}
+	targhetta.setFont({ fontSize: '18dp' });
+	mapButton.setFont({ fontSize: '13dp' });
+	mostreButton.setFont({ fontSize: '13dp' });
+	itinerariButton.setFont({ fontSize: '13dp' });
+	dormireButton.setFont({ fontSize: '13dp' });
+	mangiareButton.setFont({ fontSize: '13dp' });
+	infoButton.setFont({ fontSize: '13dp' });
 	
-	var path = 'ui/handheld/';
-	if (Ti.Platform.Android) {
-		path = path + 'android/';
-	}
+	targhetta.addEventListener('click', function(e) {
+	  	var inaugurazioneView = require('/ui/common/InaugurazioneView');
+		new inaugurazioneView().open();
+	});
 	
 	mapButton.addEventListener('click', function(e) {
 	  	var mappaView = require('/ui/common/MappaView');
