@@ -53,7 +53,6 @@ function InaugurazioneView() {
 		
 	var giorni_container = Ti.UI.createView({
 		top: '10dp',
-		bottom: '10dp',
 		width: '100%',
 		height: Ti.UI.SIZE,
 		layout: 'horizontal'
@@ -91,7 +90,7 @@ function InaugurazioneView() {
 	  showVerticalScrollIndicator: true,
 	  width: Ti.UI.FILL,
 	  layout: 'vertical',
-	  bottom: '0dp',
+	  bottom: '10dp',
 	  left: '10dp',
 	  right: '10dp'
 	});
@@ -99,8 +98,10 @@ function InaugurazioneView() {
 	self.add(scrollView);
 	
 	self.addEventListener("postlayout", function(e) {
+		var ret = (15 * (Ti.Platform.displayCaps.dpi / 160));
+		
 		scrollView.applyProperties({
-			height: (self.getRect().height - ( giorni_container.getRect().height + ( 10 * (Ti.Platform.displayCaps.dpi / 160) ) ))
+			height: (self.getRect().height - ( giorni_container.getRect().height + ret ))
 		});
 	});
 	
