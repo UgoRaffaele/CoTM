@@ -95,7 +95,6 @@ function InaugurazioneView() {
 	  left: '10dp',
 	  right: '10dp'
 	});
-	fillScrollView(scrollView, 0);
 	
 	self.add(scrollView);
 	
@@ -111,6 +110,7 @@ function InaugurazioneView() {
 			height: (self.getRect().height - ( giorni_container.getRect().height + ret ))
 		});
 	}
+	fillScrollView(scrollView, 0);
 	
 	for (var g = 0; g < giorno.length; g++) {
 		giorno[g].addEventListener('click', function(e) {
