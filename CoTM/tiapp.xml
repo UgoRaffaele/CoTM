@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>com.ugopiemontese.cortona</id>
-    <name>Cortona</name>
+    <name>CoTM</name>
     <version>1.0</version>
     <publisher>Ugo Raffaele Piemontese</publisher>
     <url>http://www.ugopiemontese.eu</url>
-    <description>descrizione</description>
+    <description>Cortona On The Move 2014</description>
     <copyright>2014 by Ugo Raffaele Piemontese</copyright>
     <icon>appicon.png</icon>
     <fullscreen>false</fullscreen>

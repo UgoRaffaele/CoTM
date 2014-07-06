@@ -98,11 +98,11 @@ function InaugurazioneView() {
 	
 	self.add(scrollView);
 	
-	var ret = (15 * Ti.Platform.displayCaps.platformHeight) / Ti.Platform.displayCaps.dpi;
+	var ret = (20 * Ti.Platform.displayCaps.platformHeight) / Ti.Platform.displayCaps.dpi;
 	if (Ti.Platform.Android) {
 		self.addEventListener("postlayout", function(e) {	
 			scrollView.applyProperties({
-				height: (self.getRect().height - ( giorni_container.getRect().height + ret ))
+				height: (self.getRect().height - ( 2 * giorni_container.getRect().height ))
 			});
 		});
 	} else {
@@ -189,7 +189,7 @@ function fillScrollView(view, num)
 			width: Ti.UI.SIZE,
 			right: '0dp',
 			textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-			backgroundColor: '#CC0000',
+			backgroundColor: '#E10613',
 			color: '#FFFFFF',
 			font: { fontSize: '14dp', fontFamily:'Helvetica Neue' },
 			text: inaugurazioneTime
