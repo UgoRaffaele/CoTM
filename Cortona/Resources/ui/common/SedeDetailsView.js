@@ -58,7 +58,9 @@ function SedeDetailsView(id) {
     self.titleAttributes = ({ font: { fontSize: 16, fontFamily:'Helvetica Neue' } }); 
     
     var hor = Ti.UI.createView({
-    	layout: 'horizontal'
+    	layout: 'horizontal',
+    	height: Ti.UI.SIZE,
+    	top: '0dp'
     });
     
     var textOrari = Ti.UI.createLabel({
@@ -170,14 +172,6 @@ function SedeDetailsView(id) {
 		right: '10dp',
 		bottom: '10dp'
 	});
-	
-	//Ti.API.info(Ti.Platform.displayCaps.platformHeight);
-	
-	if(Ti.Platform.displayCaps.platformHeight >= 568) {
-		mapView.applyProperties({ height: '230dp' });
-	} else if(Ti.Platform.displayCaps.platformHeight >= 800) {
-		mapView.applyProperties({ height: '250dp' });
-	}
     
     var sedePOI = Map.createAnnotation({
 		latitude: sedeLat,
@@ -194,7 +188,20 @@ function SedeDetailsView(id) {
 	
 	self.add(hor);
 	self.add(mapView);
-		
+	
+	var ret = (20 * Ti.Platform.displayCaps.platformHeight) / Ti.Platform.displayCaps.dpi;
+	if (Ti.Platform.Android) {
+		self.addEventListener("postlayout", function(e) {
+			mapView.applyProperties({
+				height: (self.getRect().height - ( hor.getRect().height + ret ))
+			});
+		});
+	} else {
+		mapView.applyProperties({
+			height: (self.getRect().height - ( hor.getRect().height + ret ))
+		});
+	}
+	
 	return self;
 }
 

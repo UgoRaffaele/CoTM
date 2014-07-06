@@ -71,7 +71,7 @@ function SponsorDetailsView(id) {
     
     var scrollView = Ti.UI.createScrollView({
 	  contentWidth: Ti.UI.FILL,
-	  showVerticalScrollIndicator: true,
+	  showVerticalScrollIndicator: false,
 	  width: Ti.UI.FILL,
 	  top: '10dp',
 	  layout: 'horizontal'
