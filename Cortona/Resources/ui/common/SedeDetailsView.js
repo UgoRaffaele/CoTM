@@ -4,7 +4,8 @@ function SedeDetailsView(id) {
 		
 	var self = Ti.UI.createWindow({
 		backgroundColor:'#ffffff',
-		orientationModes: [Ti.UI.PORTRAIT]
+		orientationModes: [Ti.UI.PORTRAIT],
+		height: Ti.UI.FILL
 	});
 	
 	if (Titanium.Platform.name == 'iPhone OS') {
@@ -187,13 +188,12 @@ function SedeDetailsView(id) {
 	mapView.addAnnotation(sedePOI);
 	
 	self.add(hor);
-	self.add(mapView);
 	
 	var ret = (20 * Ti.Platform.displayCaps.platformHeight) / Ti.Platform.displayCaps.dpi;
 	if (Ti.Platform.Android) {
 		self.addEventListener("postlayout", function(e) {
 			mapView.applyProperties({
-				height: (self.getRect().height - ( hor.getRect().height + ret ))
+				height: (self.getRect().height - hor.getRect().height)
 			});
 		});
 	} else {
@@ -201,6 +201,8 @@ function SedeDetailsView(id) {
 			height: (self.getRect().height - ( hor.getRect().height + ret ))
 		});
 	}
+	
+	self.add(mapView);
 	
 	return self;
 }

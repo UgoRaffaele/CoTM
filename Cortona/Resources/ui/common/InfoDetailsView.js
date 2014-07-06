@@ -80,6 +80,45 @@ function InfoDetailsView(id) {
 				color: '#000000'
 			});
 			MainView.add(testo_biglietti);
+			
+			var Map = require('ti.map');	
+	
+			var mapView = Map.createView({
+				mapType: Map.NORMAL_TYPE,
+				region: {
+					latitude: 43.27438, longitude: 11.986754,
+		            latitudeDelta: 0.003, longitudeDelta: 0.003
+		        },
+		    	regionFit: true,
+		    	userLocation: true,
+		    	showsPointsOfInterest: false, //android only
+		    	animate: true, 
+		    	userLocationButton: false,
+		    	enableZoomControls: false
+			});
+			
+			mapView.applyProperties({
+				width: Ti.UI.FILL,
+				height: '180dp',
+				bottom: '0dp',
+				top: '10dp'
+			});
+		    
+		    var sedePOI = Map.createAnnotation({
+				latitude: 43.27438,
+				longitude: 11.986754,
+				pincolor: Map.ANNOTATION_RED,
+				image: '/db/pins/sede.png'
+			});
+			
+			if(Ti.Platform.Android && Ti.Platform.displayCaps.dpi > 160 ) {
+				sedePOI.image = '/db/pins/sede@2x.png';
+			}
+			
+			mapView.addAnnotation(sedePOI);
+			
+			MainView.add(mapView);
+			
 			break;
 		case 2:	
 			var testo_contatti = Ti.UI.createLabel({

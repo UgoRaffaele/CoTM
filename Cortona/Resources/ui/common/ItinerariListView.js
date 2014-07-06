@@ -48,16 +48,11 @@ function ItinerariListView() {
 	var db = Ti.Database.open('CoTM');
 	
 	var query = 'SELECT * FROM itinerari_cat ORDER BY iid';
-	var suffix = 'en';
-	
-	if(Titanium.Locale.currentLanguage == 'it') {
-		suffix = 'it';
-	}
 	
 	var itinerariRow = db.execute(query);
 	while (itinerariRow.isValidRow()) {
 	  var itinerarioId = itinerariRow.fieldByName('iid');
-	  var itinerarioName = itinerariRow.fieldByName('itinerario_' + suffix);
+	  var itinerarioName = itinerariRow.fieldByName('itinerario');
 	  var itinerarioDurata = itinerariRow.fieldByName('durata');
 	  	  
 	  var itinerario = Ti.UI.createView({

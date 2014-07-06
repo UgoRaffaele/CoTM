@@ -119,6 +119,9 @@ function SponsorDetailsView(id) {
 	  	font: { fontSize: '16dp', fontFamily:'Helvetica Neue' },
 	  	color: '#000000'
 	});
+	tel.addEventListener('click', function(e) {
+		Titanium.Platform.openURL('tel:' + sponsorTel);
+	});
 	scrollView.add(tel);
 	
 	var targhetta_web = Ti.UI.createLabel({
@@ -136,6 +139,9 @@ function SponsorDetailsView(id) {
 	  	width: Ti.UI.FILL,
 	  	font: { fontSize: '16dp', fontFamily:'Helvetica Neue' },
 	  	color: '#000000'
+	});
+	web.addEventListener('click', function(e) {
+		Titanium.Platform.openURL('http://' + sponsorUrl);
 	});
 	scrollView.add(web);
 	
@@ -155,8 +161,11 @@ function SponsorDetailsView(id) {
 	  	font: { fontSize: '16dp', fontFamily:'Helvetica Neue' },
 	  	color: '#000000'
 	});
+	email.addEventListener('click', function(e) {
+		Titanium.Platform.openURL('mailto:' + sponsorEmail);
+	});
 	scrollView.add(email); 
-	
+		
 	topLayout.add(scrollView);
 	
 	var Map = require('ti.map');	

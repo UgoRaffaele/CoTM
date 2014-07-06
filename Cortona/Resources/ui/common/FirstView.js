@@ -169,7 +169,6 @@ function FirstView() {
 	}
 
 	if(deviceHeight > 480) {
-		
 		logo.width = '220dp';
 		targhetta.top = null;
 		targhetta.bottom = '255dp';
@@ -185,19 +184,8 @@ function FirstView() {
 		mangiareButton.bottom = '20dp';
 		infoButton.top = null;
 		infoButton.bottom = '20dp';
-		
 	}
-	
-	/*if(deviceWidth <= 480) {
-		targhetta.setFont({ fontSize: 20 });
-		mapButton.setFont({ fontSize: 14 });
-		mostreButton.setFont({ fontSize: 14 });
-		itinerariButton.setFont({ fontSize: 14 });
-		dormireButton.setFont({ fontSize: 14 });
-		mangiareButton.setFont({ fontSize: 14 });
-		infoButton.setFont({ fontSize: 14 });
-	}*/
-	
+
 	/*TESTING*/
 	targhetta.setFont({ fontSize: '18dp' });
 	mapButton.setFont({ fontSize: '13dp' });

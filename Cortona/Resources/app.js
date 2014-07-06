@@ -38,9 +38,18 @@ if (Ti.version < 1.8) {
 
   var isTablet = checkTablet();
   
+  var suffix = 'en';
+	
+  if(Titanium.Locale.currentLanguage == 'it') {
+	suffix = 'it';
+  }
+  
   var db = Ti.Database.install('/db/CoTM.sqlite', 'CoTM');
+  
   if(Ti.Platform.osname != 'android')
 	db.file.setRemoteBackup(false);	
+  
+  db.close();
 
   var Window;
   if (isTablet) {

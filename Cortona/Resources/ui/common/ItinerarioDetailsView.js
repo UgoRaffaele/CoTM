@@ -46,11 +46,6 @@ function ItinerarioDetailsView(id) {
 	var db = Ti.Database.open('CoTM');
 	
 	var query = 'SELECT sedi.sid, name, indirizzo, orari FROM sedi INNER JOIN itinerari ON sedi.sid = itinerari.sid WHERE itinerari.iid =' + id + ' ORDER BY itinerari.ord';
-	var suffix = 'en';
-	
-	if(Titanium.Locale.currentLanguage == 'it') {
-		suffix = 'it';
-	}
 	
 	var sediRow = db.execute(query);
 	while (sediRow.isValidRow()) {
@@ -121,17 +116,12 @@ function ItinerarioDetailsView(id) {
 	  sediRow.next();
 	}
 	sediRow.close();
-    
-    var suffix = 'en';
-	if(Titanium.Locale.currentLanguage == 'it') {
-		suffix = 'it';
-	}	
 	
-	var query = 'SELECT itinerario_' + suffix + ' FROM itinerari_cat WHERE iid = ' + id;
+	var query = 'SELECT itinerario FROM itinerari_cat WHERE iid = ' + id;
 	
 	var itinerariRow = db.execute(query);
 	while (itinerariRow.isValidRow()) {
-		var itinerarioName = itinerariRow.fieldByName('itinerario_' + suffix);
+		var itinerarioName = itinerariRow.fieldByName('itinerario');
 		if(!Ti.Platform.Android) {
 	    	self.title = '- ' + itinerarioName.toUpperCase() + ' -';
 	    } else {
