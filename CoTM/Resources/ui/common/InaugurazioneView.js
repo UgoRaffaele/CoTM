@@ -98,7 +98,6 @@ function InaugurazioneView() {
 	
 	self.add(scrollView);
 	
-	var ret = (20 * Ti.Platform.displayCaps.platformHeight) / Ti.Platform.displayCaps.dpi;
 	if (Ti.Platform.Android) {
 		self.addEventListener("postlayout", function(e) {	
 			scrollView.applyProperties({
@@ -107,7 +106,7 @@ function InaugurazioneView() {
 		});
 	} else {
 		scrollView.applyProperties({
-			height: (self.getRect().height - ( giorni_container.getRect().height + ret ))
+			height: (self.getRect().height - ( giorni_container.getRect().height + 30 ))
 		});
 	}
 	fillScrollView(scrollView, 0);

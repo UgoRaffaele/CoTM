@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<string name="opening">OPENING</string>
-	<string name="mappa">MAPPA</string>
-	<string name="mostre">MOSTRE</string>
+	<string name="mappa">MAP</string>
+	<string name="mostre">EXHIBITS</string>
 	<string name="itinerari">ITINERARI</string>
-	<string name="dormire">DORMIRE</string>
-	<string name="mangiare">MANGIARE</string>
+	<string name="dormire">STAY</string>
+	<string name="mangiare">EAT</string>
 	<string name="info">INFO</string>
 	
-	<string name="orari">ORARI</string>
-	<string name="indirizzo">INDIRIZZO</string>
+	<string name="orari">OPENING HOURS</string>
+	<string name="indirizzo">ADDRESS</string>
 	<string name="tel">TEL.</string>
 	<string name="email">EMAIL</string>
 	<string name="web">WEB</string>
 	<string name="ticket">TICKET</string>
-	<string name="vedi_mostre">VEDI MOSTRE</string>
+	<string name="vedi_mostre">SEE EXHIBITS</string>
 	
 	<string name="cotm_2014">COTM 2014</string>
-	<string name="sedi">SEDI E ORARI</string>
-	<string name="biglietti">BIGLIETTI</string>
-	<string name="contatti">CONTATTI</string>
+	<string name="sedi">LOCATIONS</string>
+	<string name="biglietti">TICKETS</string>
+	<string name="contatti">CONTACTS</string>
 	
 	<string name="testo_cotm">Cortona On The Move - fotografia in viaggio, edizione 2014 giunge alla quarta edizione con un’identità riconosciuta a livello europeo ed internazionale.\n\nDal 17 luglio al 28 settembre 2014, la cittadina di Cortona aprirà l’annuale evento dedicato alla fotografia in viaggio coinvolgendo luoghi, cittadini e tutto un pubblico di professionisti ed appassionati.\n\nPer il terzo anno consecutivo, la direzione artistica è affidata all’occhio esperto di Arianna Rinaldo, le cui proposte in campo fotografico, oltre a rappresentare un’assoluta certezza di qualità, sapranno ancora una volta stupire ed appassionare i visitatori del festival.\n\nPercorso reale o ideale, fantastico, immaginato e a volte sconvolgente, dirompente e rivoluzionario, scoperta di sé e dell’altro… il tema del Viaggio rimane fulcro del festival. Fin dalla nascita, il bagaglio di conoscenze acquisite e di consapevolezze di un essere umano aumenta. Possiamo quindi metterci in Viaggio. Mentre la meta si avvicina e diventa reale, il luogo di partenza si allontana e sostituisce la meta nell’irrealtà dei ricordi; guadagniamo una, e perdiamo l’altro.</string>
-	<string name="testo_biglietti">BIGLIETTO UNICO\nPer accedere a tutte le mostre e valido fino al 28 Settembre 2014:\nINTERO 13€\nRIDOTTO 10€\n\nBIGLIETTO DI INGRESSO SINGOLO\nFortezza 4€\nVecchio Ospedale 6€\nChiesa di Sant’Antonio 3€\nEx Magazzino delle Carni 3€\nL'ingresso al Padiglione Polacco è sempre gratuito.\n\nBIGLIETTO RIDOTTO\nGruppi composti da almeno 10 persone paganti.\nAssociati Chianti, Banca Popolare, Donatori di UNHCR, FAI Service, possessori di un biglietto del festival Arezzo Wave 2014.\n\nBIGLIETTO GRATUITO\nVisitatori inferiori a 14 anni, giornalisti previa presentazione del tesserino.\n\nACCESSIBILITÀ ALLE SEDI ESPOSITIVE\nLe sedi espositive sono accessibili a persone con disabilità solo il sabato. Per info e prenotazioni del servizio, scrivere a info@cortonaonthemove.com\n\nCOTM ZONE, BIGLIETTERIA E BOOKSHOP\nPalazzo Ferretti,\nVia Nazionale 45\nApertura: dal 17 Luglio al 28 Settembre, dalle ore 10.00 alle 20.00</string>
+	<string name="testo_biglietti">BIGLIETTO UNICO\nPer accedere a tutte le mostre e valido fino al 28 Settembre 2014:\nINTERO 13€\nRIDOTTO 10€\n\nBIGLIETTO DI INGRESSO SINGOLO\nFortezza 4€\nVecchio Ospedale 6€\nChiesa di Sant’Antonio 3€\nEx Magazzino delle Carni 3€\nL'ingresso a Ruga Piana 60 è sempre gratuito.\n\nBIGLIETTO RIDOTTO\nGruppi composti da almeno 10 persone paganti.\nAssociati Chianti, Banca Popolare, Donatori di UNHCR, FAI Service, possessori di un biglietto del festival Arezzo Wave 2014.\n\nBIGLIETTO GRATUITO\nVisitatori inferiori a 14 anni, giornalisti previa presentazione del tesserino.\n\nACCESSIBILITÀ ALLE SEDI ESPOSITIVE\nLe sedi espositive sono accessibili a persone con disabilità solo il sabato. Per info e prenotazioni del servizio, scrivere a info@cortonaonthemove.com\n\nCOTM ZONE, BIGLIETTERIA E BOOKSHOP\nPalazzo Ferretti,\nVia Nazionale 45\nApertura: dal 17 Luglio al 28 Settembre, dalle ore 10.00 alle 20.00</string>
 	<string name="testo_contatti">Cortona On The Move - fotografia in viaggio, è una produzione dell'Associazione Culturale ONTHEMOVE, in collaborazione con Studio Metria, società specializzata nell'ideazione creativa e nella produzione di eventi di comunicazione e culturali.\n\nAssociazione culturale ONTHEMOVE\n\nCortona On The Move,\nvia Roma 31\n52044 Cortona (AR)\ninfo@cortonaonthemove.com</string>
 	
-	<string name="d_17_07">17/07</string>
-	<string name="d_18_07">18/07</string>
-	<string name="d_19_07">19/07</string>
-	<string name="d_20_07">20/07</string>
+	<string name="d_17_07">July 17</string>
+	<string name="d_18_07">July 18</string>
+	<string name="d_19_07">July 19</string>
+	<string name="d_20_07">July 20</string>
 	
 </resources>
