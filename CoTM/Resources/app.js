@@ -44,7 +44,17 @@ if (Ti.version < 1.8) {
 	suffix = '_IT';
   }
   
-  var db = Ti.Database.install('/db/CoTM' + suffix + '.sqlite', 'CoTM');
+  //var db = Ti.Database.install('/db/CoTM' + suffix + '.sqlite', 'CoTM');
+  
+  var db = Ti.Database.open('CoTM');
+  var dbFile = Ti.Filesystem.getFile(db.getFile().nativePath);
+  db.close();
+  
+  if (dbFile.exists()) {
+  	dbFile.deleteFile(); 
+  }
+  
+  db = Ti.Database.install('/db/CoTM' + suffix + '.sqlite', 'CoTM');
    
   if (Ti.Platform.osname != 'android') {
 	db.file.setRemoteBackup(false);	
