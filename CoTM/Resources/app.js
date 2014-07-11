@@ -43,16 +43,10 @@ if (Ti.version < 1.8) {
   if (Titanium.Locale.currentLanguage == 'it') {
 	suffix = '_IT';
   }
-  
-  //var db = Ti.Database.install('/db/CoTM' + suffix + '.sqlite', 'CoTM');
-  
+    
   var db = Ti.Database.open('CoTM');
-  var dbFile = Ti.Filesystem.getFile(db.getFile().nativePath);
   db.close();
-  
-  if (dbFile.exists()) {
-  	dbFile.deleteFile(); 
-  }
+  db.remove();
   
   db = Ti.Database.install('/db/CoTM' + suffix + '.sqlite', 'CoTM');
    
