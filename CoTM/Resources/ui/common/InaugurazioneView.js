@@ -57,7 +57,6 @@ function InaugurazioneView() {
 		height: Ti.UI.SIZE,
 		layout: 'horizontal'
 	});
-	self.add(giorni_container);
 	
 	var giorno = [];
 		
@@ -86,17 +85,20 @@ function InaugurazioneView() {
 		giorni_container.add(giorno[c]);
 	}
 	
+	self.add(giorni_container);
+	
+	Ti.API.info(self.getRect().height - ( giorni_container.getRect().height + 30 ));
+	
 	var scrollView = Ti.UI.createScrollView({
 	  contentWidth: Ti.UI.FILL,
 	  showVerticalScrollIndicator: true,
 	  width: Ti.UI.FILL,
+	  height: (self.getRect().height - ( giorni_container.getRect().height + 30 )),
 	  layout: 'vertical',
 	  bottom: '10dp',
 	  left: '10dp',
 	  right: '10dp'
 	});
-	
-	self.add(scrollView);
 	
 	if (Ti.Platform.Android) {
 		self.addEventListener("postlayout", function(e) {	
@@ -104,11 +106,10 @@ function InaugurazioneView() {
 				height: (self.getRect().height - ( 2 * giorni_container.getRect().height ))
 			});
 		});
-	} else {
-		scrollView.applyProperties({
-			height: (self.getRect().height - ( giorni_container.getRect().height + 30 ))
-		});
 	}
+	
+	self.add(scrollView);
+	
 	fillScrollView(scrollView, 0);
 	
 	for (var g = 0; g < giorno.length; g++) {
