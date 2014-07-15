@@ -136,10 +136,27 @@ function SponsorListView(idCategoria) {
 		    	self.title = String(L('dormire'));
 		    }
 			break;
+		case 3:
+			if(!Ti.Platform.Android) {
+		    	self.title = '- ' + String(L('shopping')) + ' -';
+		    } else {
+		    	self.title = String(L('shopping'));
+		    }
+			break;
 	}
     self.titleAttributes = ({ font: { fontSize: 16, fontFamily:'Helvetica Neue' } }); 
 		
-	self.add(scrollView);	
+	self.add(scrollView);
+	
+	if (Ti.Platform.Android) {
+		self.addEventListener('open', function(e) {
+			var actionBar = self.getActivity().actionBar;
+			actionBar.setDisplayHomeAsUp(true);
+			actionBar.onHomeIconItemSelected = function() {
+			    self.getActivity().finish();
+			};
+		});
+	}	
 		
 	return self;
 }

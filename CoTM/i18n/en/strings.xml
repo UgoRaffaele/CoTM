@@ -18,16 +18,16 @@
 	
 	<string name="cotm_2014">COTM 2014</string>
 	<string name="sedi">LOCATIONS</string>
+	<string name="shopping">SHOPPING</string>
 	<string name="biglietti">TICKETS</string>
 	<string name="contatti">CONTACTS</string>
 	
 	<string name="testo_cotm">In 2014, the international photography festival Cortona On The Move - photography in travel, reaches the fourth edition with its own identity, recognized at  European and international level.\n\nFrom July 17th to September 28th 2014, the town of Cortona will open the annual event dedicated to photography in travel, involving places and an audience of professionals and enthusiasts.\n\nFor the third year in a row, the artistic direction has been commissioned to the expert eye of Arianna Rinaldo, whose proposals in the field of photography, apart from being an absolute guarantee, will once again amaze and thrill all the lucky visitors of the festival.\n\nReal or ideal path, fantastic, imagined and sometimes shocking, disruptive and revolutionary, discovery of the self and the other... The theme of the Voyage is the fulcrum of the festival. Since birth, the wealth of knowledge and awareness of a human being increases. We can then go on the road. While the goal is getting closer and it becomes real, the place of departure leaves and replaces the destination in the unreality of memories; earn one and lose the other.</string>
 	<string name="testo_biglietti">ALL THE EXHIBITIONS\nTicket which includes all the exhibitions and valid until September 28th 2014: 13 €\nReduced ticket: 10€\nSINGLE ENTRY\nFortezza 4€\nVecchio Ospedale 6€\nChiesa di Sant’Antonio 3€\nEx Magazzino delle Carni 3€\nAlways free entry to Ruga Piana 60.\n\nREDUCTIONS AND FACILITIES\nGroup starting from 10 paying people who travel all together.\nChianti Holders, Banca Popolare di Cortona  partners, IED students, UNHCR donors, FAI partners.\n\nFREE ENTRY\nChildren under 14, journalists presenting card\n\nACCESSIBILITY\nThe exhibition venues, by the very nature of their location (not regular or uneven terrain) and their structure, are not accessible to the disabled.\n\nCOTM ZONE AND BOOKSHOP\nPalazzo Ferretti,\nVia Nazionale 45\nOpen from July 18th to 31st, 10am to 8pm. From September 1st to 28th, 10am to 7pm</string>
-	<string name="testo_contatti">Cortona On The Move - photography in travel is a production of the Cultural association ONTHEMOVE, in collaboration with Studio Metria, a company specializing in the design and production of creative communication and cultural events.\n\nAssociazione culturale ONTHEMOVE\nCortona On The Move,\nvia Roma 31\n52044 Cortona (AR)\ninfo@cortonaonthemove.com</string>
+	<string name="testo_contatti">Cortona On The Move - photography in travel is a production of the Cultural association ONTHEMOVE, in collaboration with Studio Metria, a company specializing in the design and production of creative communication and cultural events.\n\nAssociazione culturale ONTHEMOVE\n\nCortona On The Move,\nvia Roma 31\n52044 Cortona (AR)\ninfo@cortonaonthemove.com</string>
 	
 	<string name="d_17_07">July 17</string>
 	<string name="d_18_07">July 18</string>
 	<string name="d_19_07">July 19</string>
 	<string name="d_20_07">July 20</string>
-	
 </resources>

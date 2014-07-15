@@ -27,7 +27,7 @@ function ApplicationWindow() {
         	sponsorImage.applyProperties({ height: '0dp' });
     	}, 3000);
 	});
-
+	
 	return self;
 }
 

@@ -133,7 +133,17 @@ function ItinerariListView() {
     }
     self.titleAttributes = ({ font: { fontSize: 16, fontFamily:'Helvetica Neue' } }); 
 		
-	self.add(scrollView);	
+	self.add(scrollView);
+	
+	if (Ti.Platform.Android) {
+		self.addEventListener('open', function(e) {
+			var actionBar = self.getActivity().actionBar;
+			actionBar.setDisplayHomeAsUp(true);
+			actionBar.onHomeIconItemSelected = function() {
+			    self.getActivity().finish();
+			};
+		});
+	}	
 		
 	return self;
 }

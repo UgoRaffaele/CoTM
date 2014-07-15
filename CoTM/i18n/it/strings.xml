@@ -18,6 +18,7 @@
 	
 	<string name="cotm_2014">COTM 2014</string>
 	<string name="sedi">SEDI E ORARI</string>
+	<string name="shopping">SHOPPING</string>
 	<string name="biglietti">BIGLIETTI</string>
 	<string name="contatti">CONTATTI</string>
 	
@@ -29,5 +30,4 @@
 	<string name="d_18_07">18/07</string>
 	<string name="d_19_07">19/07</string>
 	<string name="d_20_07">20/07</string>
-	
 </resources>

@@ -4,7 +4,8 @@ function InfoView() {
 		
 	var self = Ti.UI.createWindow({
 		backgroundColor:'#ffffff',
-		orientationModes: [Ti.UI.PORTRAIT]
+		orientationModes: [Ti.UI.PORTRAIT],
+		height: Ti.UI.FILL
 	});
 	
 	var scrollView = Ti.UI.createScrollView({
@@ -46,7 +47,7 @@ function InfoView() {
 	var arrow = [];
 	var borderView = [];
 	
-	for (var i = 0; i < 4; i++) {
+	for (var i = 0; i < 5; i++) {
 		arrow[i] = Ti.UI.createImageView({
 			height: '22dp',
 		  	right: '10dp',
@@ -63,7 +64,7 @@ function InfoView() {
 	  
 	var cotm = Ti.UI.createView({
 	  	width: Ti.UI.Fill,
-	  	height: '25%'
+	  	height: '20%'
   	});
   	  
 	var thumb_cotm = Ti.UI.createImageView({
@@ -86,7 +87,7 @@ function InfoView() {
 	
 	var sedi = Ti.UI.createView({
 	  	width: Ti.UI.Fill,
-	  	height: '25%'
+	  	height: '20%'
   	});
   	  
 	var thumb_sedi = Ti.UI.createImageView({
@@ -107,9 +108,32 @@ function InfoView() {
 	sedi.add(arrow[1]);
 	sedi.add(borderView[1]);
 	
+	var shopping = Ti.UI.createView({
+	  	width: Ti.UI.Fill,
+	  	height: '20%'
+  	});
+  	  
+	var thumb_shopping = Ti.UI.createImageView({
+	  	left: '10dp',
+	  	image: '/images/shopping_2014.png',
+	  	height: '80dp'
+	});
+  
+	var label_shopping = Ti.UI.createLabel({
+	  	text: String(L('shopping')).toUpperCase(),
+	  	font: { fontSize: '16dp', fontFamily:'Helvetica Neue', fontWeight: 'bold' },
+	  	color: '#000',
+	  	left: '100dp'
+	});
+  
+	shopping.add(thumb_shopping);
+	shopping.add(label_shopping);
+	shopping.add(arrow[2]);
+	shopping.add(borderView[2]);
+	
 	var biglietti = Ti.UI.createView({
 	  	width: Ti.UI.Fill,
-	  	height: '25%'
+	  	height: '20%'
   	});
   	  
 	var thumb_biglietti = Ti.UI.createImageView({
@@ -127,12 +151,12 @@ function InfoView() {
   
 	biglietti.add(thumb_biglietti);
 	biglietti.add(label_biglietti);
-	biglietti.add(arrow[2]);
-	biglietti.add(borderView[2]);
+	biglietti.add(arrow[3]);
+	biglietti.add(borderView[3]);
 	
 	var contatti = Ti.UI.createView({
 	  	width: Ti.UI.Fill,
-	  	height: '25%'
+	  	height: '20%'
   	});
   	  
 	var thumb_contatti = Ti.UI.createImageView({
@@ -150,10 +174,11 @@ function InfoView() {
   
 	contatti.add(thumb_contatti);
 	contatti.add(label_contatti);
-	contatti.add(arrow[3]);
+	contatti.add(arrow[4]);
 	
 	scrollView.add(cotm);
 	scrollView.add(sedi);
+	scrollView.add(shopping);
 	scrollView.add(biglietti);
 	scrollView.add(contatti);
 	
@@ -167,6 +192,11 @@ function InfoView() {
  	sedi.addEventListener('click', function(e) {
  		var sediListView = require('/ui/common/SediListView');
 		new sediListView().open();
+ 	});
+ 	
+ 	shopping.addEventListener('click', function(e) {
+ 		var sponsorListView = require('/ui/common/SponsorListView');
+		new sponsorListView(3).open();
  	});
  	
  	biglietti.addEventListener('click', function(e) {
@@ -186,6 +216,16 @@ function InfoView() {
     self.titleAttributes = ({ font: { fontSize: 16, fontFamily:'Helvetica Neue' } }); 
 		
 	self.add(scrollView);	
+		
+	if (Ti.Platform.Android) {
+		self.addEventListener('open', function(e) {
+			var actionBar = self.getActivity().actionBar;
+			actionBar.setDisplayHomeAsUp(true);
+			actionBar.onHomeIconItemSelected = function() {
+			    self.getActivity().finish();
+			};
+		});
+	}	
 		
 	return self;
 }

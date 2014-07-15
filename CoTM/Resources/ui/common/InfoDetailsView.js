@@ -134,6 +134,16 @@ function InfoDetailsView(id) {
 	
 	self.add(MainView);
 
+	if (Ti.Platform.Android) {
+		self.addEventListener('open', function(e) {
+			var actionBar = self.getActivity().actionBar;
+			actionBar.setDisplayHomeAsUp(true);
+			actionBar.onHomeIconItemSelected = function() {
+			    self.getActivity().finish();
+			};
+		});
+	}
+
 	return self;
 }
 

@@ -247,6 +247,16 @@ function SponsorDetailsView(id) {
 		//topLayout.applyProperties({ height: (self.getRect().height - botLayout.getRect().height) });
 		scrollView.applyProperties({ height: Ti.UI.FILL });
 	}
+	
+	if (Ti.Platform.Android) {
+		self.addEventListener('open', function(e) {
+			var actionBar = self.getActivity().actionBar;
+			actionBar.setDisplayHomeAsUp(true);
+			actionBar.onHomeIconItemSelected = function() {
+			    self.getActivity().finish();
+			};
+		});
+	}
 
 	return self;
 }

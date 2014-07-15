@@ -1,5 +1,5 @@
 //Application Window Component Constructor
-function ApplicationWindow() {
+function ApplicationWindow(splash) {
 	//load component dependencies
 	var FirstView = require('ui/common/FirstView');
 
@@ -12,6 +12,19 @@ function ApplicationWindow() {
 	//construct UI
 	var firstView = new FirstView();
 	self.add(firstView);
+
+	var sponsorImage = Ti.UI.createImageView({
+		width: Ti.UI.FILL,
+		height: Ti.UI.FILL,
+	  	image: '/images/sponsor.jpg'
+	});
+	self.add(sponsorImage);
+	
+	sponsorImage.addEventListener("postlayout", function(e) {
+		setTimeout(function(){
+        	sponsorImage.applyProperties({ height: '0dp' });
+    	}, 3000);
+	});
 
 	return self;
 }
