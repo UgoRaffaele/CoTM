@@ -1,1 +1,6 @@
-Place your license text here.  This file will be incorporated with your app at package time.
+Cortona On The Move app, also known as COTM, is provided without any form of warranty.
+
+Everyone is permitted to copy and distribute copies of this app but changing or use parts of it is not allowed.
+
+Developed by Ugo Raffaele Piemontese.
+Images and photos in this app are property of their respective owners.

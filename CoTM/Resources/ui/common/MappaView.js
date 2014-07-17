@@ -10,9 +10,7 @@ function MappaView() {
 	if (Titanium.Platform.name == 'iPhone OS') {
 		
 		self.applyProperties({ statusBarStyle: Titanium.UI.iPhone.StatusBar.OPAQUE_BLACK });
-		
-		var theTop = isiOS7() ? 33 : 0;
-	
+			
 		var navigation = Titanium.UI.iOS.createNavigationWindow({
 		   window: self,
 		   backgroundColor: '#000000'
@@ -23,7 +21,7 @@ function MappaView() {
 		    width: '12dp',
 	   		height: '21dp',
 			left: '8dp',
-			top: theTop,
+			top: 33,
 			backgroundImage: 'back-arrow.png'
 		});
 		
@@ -73,7 +71,7 @@ function MappaView() {
 			sid: sedeId // custom property
 		});
 		
-		if(!Ti.Platform.Android && isiOS7()) {
+		if(!Ti.Platform.Android) {
 			sedePOI.leftButton = '/db/pins/sede_icon.png';
 		}
 				
@@ -109,7 +107,7 @@ function MappaView() {
 		switch(categoriaId) {
 			case 1:
 				sponsorPOI.image = '/db/pins/mangiare.png';
-				if(!Ti.Platform.Android && isiOS7()) {
+				if(!Ti.Platform.Android) {
 					sponsorPOI.leftButton = '/db/pins/mangiare_icon.png';
 				}
 				if(Ti.Platform.Android && Ti.Platform.displayCaps.dpi > 160 ) {
@@ -118,7 +116,7 @@ function MappaView() {
 				break;
 			case 2:
 				sponsorPOI.image = '/db/pins/dormire.png';
-				if(!Ti.Platform.Android && isiOS7()) {
+				if(!Ti.Platform.Android) {
 					sponsorPOI.leftButton = '/db/pins/dormire_icon.png';
 				}
 				if(Ti.Platform.Android && Ti.Platform.displayCaps.dpi > 160 ) {
@@ -127,7 +125,7 @@ function MappaView() {
 				break;
 			case 3:
 				sponsorPOI.image = '/db/pins/servizi.png';
-				if(!Ti.Platform.Android && isiOS7()) {
+				if(!Ti.Platform.Android) {
 					sponsorPOI.leftButton = '/db/pins/servizi_icon.png';
 				}
 				if(Ti.Platform.Android && Ti.Platform.displayCaps.dpi > 160 ) {
@@ -157,7 +155,7 @@ function MappaView() {
 		
 		var evento = (evt.clicksource == 'title') || (evt.clicksource == 'subtitle');
 		
-		if(!Ti.Platform.Android && isiOS7()) {
+		if(!Ti.Platform.Android) {
 			evento = (evt.clicksource == 'leftButton') || (evt.clicksource == 'leftPane'); //fix iOS 7 bug
 		}
 		
@@ -183,19 +181,6 @@ function MappaView() {
 	}
 
 	return self;
-}
-
-// Function to test if device is iOS 7 (or later)
-function isiOS7() {
-	// iOS-specific test
-	if (Titanium.Platform.name == 'iPhone OS')
-	{
-		var version = Titanium.Platform.version.split(".");
-		var major = parseInt(version[0],10);
-		if (major >= 7)
-			return true;
-	}
-	return false;
 }
 
 module.exports = MappaView;

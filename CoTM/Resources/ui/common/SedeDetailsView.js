@@ -11,9 +11,7 @@ function SedeDetailsView(id) {
 	if (Titanium.Platform.name == 'iPhone OS') {
 		
 		self.applyProperties({ statusBarStyle: Titanium.UI.iPhone.StatusBar.OPAQUE_BLACK });
-		
-		var theTop = isiOS7() ? 33 : 0;
-	
+			
 		var navigation = Titanium.UI.iOS.createNavigationWindow({
 		   window: self
 		});
@@ -23,7 +21,7 @@ function SedeDetailsView(id) {
 		    width: '12dp',
 	   		height: '21dp',
 			left: '8dp',
-			top: theTop,
+			top: 33,
 			backgroundImage: 'back-arrow.png'
 		});
 		
@@ -215,20 +213,6 @@ function SedeDetailsView(id) {
 	}
 	
 	return self;
-}
-
-// Function to test if device is iOS 7 (or later)
-function isiOS7()
-{
-	// iOS-specific test
-	if (Titanium.Platform.name == 'iPhone OS')
-	{
-		var version = Titanium.Platform.version.split(".");
-		var major = parseInt(version[0],10);
-		if (major >= 7)
-			return true;
-	}
-	return false;
 }
 
 module.exports = SedeDetailsView;

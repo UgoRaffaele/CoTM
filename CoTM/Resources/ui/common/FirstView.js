@@ -1,14 +1,10 @@
 //FirstView Component Constructor
 function FirstView() {
 	
-	var deviceHeight = Ti.Platform.displayCaps.platformHeight;
-	var deviceWidth = Ti.Platform.displayCaps.platformWidth;
-	
 	//create object instance, a parasitic subclass of Observable
 	var self = Ti.UI.createView({
 		width: '100%',
 		height: '100%',
-		/*layout: 'vertical'*/
 		orientationModes: [Ti.UI.PORTRAIT]
 	});
 	
@@ -168,7 +164,7 @@ function FirstView() {
 		
 	}
 
-	if(deviceHeight > 480) {
+	if(Ti.Platform.displayCaps.platformHeight > 480) {
 		logo.width = '220dp';
 		targhetta.top = null;
 		targhetta.bottom = '255dp';

@@ -11,9 +11,7 @@ function SponsorDetailsView(id) {
 	if (Titanium.Platform.name == 'iPhone OS') {
 		
 		self.applyProperties({ statusBarStyle: Titanium.UI.iPhone.StatusBar.OPAQUE_BLACK });
-		
-		var theTop = isiOS7() ? 33 : 0;
-	
+			
 		var navigation = Titanium.UI.iOS.createNavigationWindow({
 		   window: self
 		});
@@ -23,7 +21,7 @@ function SponsorDetailsView(id) {
 		    width: '12dp',
 	   		height: '21dp',
 			left: '8dp',
-			top: theTop,
+			top: 33,
 			backgroundImage: 'back-arrow.png'
 		});
 		
@@ -190,9 +188,15 @@ function SponsorDetailsView(id) {
 		bottom: '0dp'
 	});
 	
-	if (Ti.Platform.displayCaps.platformHeight >= 568) {
+	if (Ti.Platform.displayCaps.platformHeight == 568) {
 		mapView.applyProperties({ height: '175dp' });
-	} else if (Ti.Platform.displayCaps.platformHeight >= 800) {
+	}
+	
+	if (Ti.Platform.displayCaps.platformHeight > 700) {
+		mapView.applyProperties({ height: '150dp' });
+	}
+	
+	if (Ti.Platform.displayCaps.platformHeight > 900) {
 		mapView.applyProperties({ height: '180dp' });
 	}
 	
@@ -205,7 +209,7 @@ function SponsorDetailsView(id) {
 	switch(categoriaId) {
 		case 1:
 			sponsorPOI.image = '/db/pins/mangiare.png';
-			if(!Ti.Platform.Android && isiOS7()) {
+			if(!Ti.Platform.Android) {
 				sponsorPOI.leftButton = '/db/pins/mangiare_icon.png';
 			}
 			if(Ti.Platform.Android && Ti.Platform.displayCaps.dpi > 160 ) {
@@ -214,7 +218,7 @@ function SponsorDetailsView(id) {
 			break;
 		case 2:
 			sponsorPOI.image = '/db/pins/dormire.png';
-			if(!Ti.Platform.Android && isiOS7()) {
+			if(!Ti.Platform.Android) {
 				sponsorPOI.leftButton = '/db/pins/dormire_icon.png';
 			}
 			if(Ti.Platform.Android && Ti.Platform.displayCaps.dpi > 160 ) {
@@ -223,7 +227,7 @@ function SponsorDetailsView(id) {
 			break;
 		case 3:
 			sponsorPOI.image = '/db/pins/servizi.png';
-			if(!Ti.Platform.Android && isiOS7()) {
+			if(!Ti.Platform.Android) {
 				sponsorPOI.leftButton = '/db/pins/servizi_icon.png';
 			}
 			if(Ti.Platform.Android && Ti.Platform.displayCaps.dpi > 160 ) {
@@ -240,11 +244,9 @@ function SponsorDetailsView(id) {
 	
 	if(Ti.Platform.Android) {
 		self.addEventListener("postlayout", function(e) {
-			//topLayout.applyProperties({ height: (self.getRect().height - botLayout.getRect().height) });
 			scrollView.applyProperties({ height: Ti.UI.FILL });
 		});
 	} else {
-		//topLayout.applyProperties({ height: (self.getRect().height - botLayout.getRect().height) });
 		scrollView.applyProperties({ height: Ti.UI.FILL });
 	}
 	
@@ -259,20 +261,6 @@ function SponsorDetailsView(id) {
 	}
 
 	return self;
-}
-
-// Function to test if device is iOS 7 (or later)
-function isiOS7()
-{
-	// iOS-specific test
-	if (Titanium.Platform.name == 'iPhone OS')
-	{
-		var version = Titanium.Platform.version.split(".");
-		var major = parseInt(version[0],10);
-		if (major >= 7)
-			return true;
-	}
-	return false;
 }
 
 module.exports = SponsorDetailsView;
